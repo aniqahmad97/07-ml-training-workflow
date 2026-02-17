@@ -5,10 +5,11 @@ on:
   pull_request:
 
 jobs:
-  test:
+  test-and-train:
     runs-on: ubuntu-latest
     env:
       PYTHONPATH: ${{ github.workspace }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,5 +27,6 @@ jobs:
       - name: Run unit tests
         run: pytest
 
-      - name: Run training (only if tests pass)
+      - name: Run training
         run: python -m src.train
+
