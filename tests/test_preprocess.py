@@ -1,6 +1,7 @@
-import pandas as pd
+from src.preprocess import load_and_clean
 
-def load_and_clean(csv_path: str) -> pd.DataFrame:
-    """Load CSV and drop rows with missing values."""
-    df = pd.read_csv(csv_path)
-    return df.dropna()
+def test_load_and_clean():
+    df = load_and_clean("data/sample.csv")
+    assert not df.empty
+    assert df.isna().sum().sum() == 0
+
